@@ -24,16 +24,30 @@ document.addEventListener("click",function(e){
 //Time
 var timeDisplay = document.getElementById("time");
 
-
+var isTimeDisplay = false;
 
 document.getElementById("time-type").addEventListener("click",function(){
-    setInterval(function(){
+    isTimeDisplay = true;
+    var interval = setInterval(function(){
+        if(isTimeDisplay==false){
+            clearInterval(interval);
+            timeDisplay.innerHTML="";
+        }
+        else{
         var currentTime = new Date();
         var h = currentTime.getHours();
         var m = currentTime.getMinutes();
         var s = currentTime.getSeconds();
         timeDisplay.innerHTML="";
         timeDisplay.appendChild(document.createTextNode(h+":"+m+":"+s));
+        }
       },1000);
+    
+})
 
+//Heart Rate
+
+document.getElementById("heart-type").addEventListener("click",function(){
+    isTimeDisplay= false;
+    timeDisplay.innerHTML="";
 })
